@@ -1,0 +1,348 @@
+{% load staticfiles %}
+<!DOCTYPE=HTML>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+	<title>{% block head_title %} Stability {% endblock head_title %}</title>
+
+    <link rel="stylesheet" href="{% static "/main_look/style_main_interface.css" %}" />
+    <link rel="stylesheet" href="{% static "/main_look/style_game_interface.css" %}" />
+    <link rel="stylesheet" href="{% static "/main_look/jquery-ui.css" %}" />
+
+    <script src="{% static "/js_files/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "/js_files/jquery-ui.js" %}"></script>
+    <script src="{% static "/js_files/main_interface_style.js" %}"></script>
+    <script src="{% static "/js_files/game_interface_style.js" %}"></script>
+    <script src="{% static "/js_files/game_calculation.js" %}"></script>
+</head>
+
+<body>
+
+<div id="EnteringPage">
+
+    <div id="background"></div>
+
+	<div class='game_name' id='game_name_1'>
+		<div class='game_name' id='game_name_2'>
+			<div class='game_name' id = 'game_name_3'>
+				<h1 class = 'head_font' id='head_1'>Stability</h1>
+				<h1 class = 'head_font' id='head_2'>Stability</h1>
+			</div>
+		</div>
+	</div>
+
+    <div class="menu">
+
+        <div id="my_menu" class="menu_bar">
+            <a href="javascript:void(0)" class="close_btn" id="close_menu">&times;</a>
+            <div id="menu_content" class="content">
+                <a href="javascript:void(0)" id="open_about">ABOUT</a>
+                <a href="javascript:void(0)" id="open_contact">CONTACT</a>
+            </div>
+        </div>
+
+        <span id='open_menu'>&#9776; MENU</span>
+
+        <div id="my_about" class="about_info">
+            <a href="javascript:void(0)" class="close_btn" id="close_about">&times;</a>
+            <div id="about_content" class="content">
+                <p style="font-size:18px;">The game Stability <br />
+                    is developed for you <br />
+                    to design steel frame structure <br />
+                    by yourself. </p>
+            </div>
+        </div>
+
+        <div id="my_contact" class="contact_info">
+            <a href="javascript:void(0)" class="close_btn" id="close_contact">&times;</a>
+            <div id="contact_content" class="content">
+                <p style="font-size:19px;">Developer Info</p>
+                <p>Haolin Wang</p>
+                <p>shakejamesdrama@gmail.com</p>
+                <br>
+                <p>Keshu Wu</p>
+                <p>wkswks726@hotmail.com</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div  id="GameInterface">
+
+    <div class="figure">
+        <canvas id="Canvas" class="Canvas"></canvas>
+
+        <span id='result'>RESULT &#9776; </span>
+
+        <div id="my_result" class="result_bar">
+            <a href="javascript:void(0)" class="close_btn" id="close_result">&times;</a>
+            <div id="result_content" class="content">
+                <table class="resultTable">
+                    <tr class="inf">
+                        <td colspan="4" style="font-size: 18px; color: #818181">
+                            <a href="javascript:void(0)" >Force Analysis Report</a>
+                        </td>
+                    </tr>
+
+                    <tr class="inf">
+                        <td colspan="4" class="floor_tag">
+                            <a href="javascript:void(0)" >First Floor</a>
+                        </td>
+                    </tr>
+                    <tr class="inf">
+                        <td rowspan="2" class="member_tag">
+                            <a href="javascript:void(0)" >Beam</a>
+                        </td>
+                        <td>Moment</td>
+                        <td><p class="force_info" id="m1"></p></td>
+                        <td><p class="force_info" id="m1_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td>Shear</td>
+                        <td><p class="force_info" id="s1"></p></td>
+                        <td><p class="force_info" id="s1_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td class="member_tag">
+                            <a href="javascript:void(0)" >Column</a>
+                        </td>
+                        <td>Axial</td>
+                        <td><p class="force_info" id="a1"></p></td>
+                        <td><p class="force_info" id="a1_s"></p></td>
+                    </tr>
+
+                    <tr class="inf">
+                        <td colspan="4" class="floor_tag">
+                            <a href="javascript:void(0)" >Second Floor</a>
+                        </td>
+                    </tr>
+                    <tr class="inf">
+                        <td rowspan="2" class="member_tag">
+                            <a href="javascript:void(0)" >Beam</a>
+                        </td>
+                        <td>Moment</td>
+                        <td><p class="force_info" id="m2"></p></td>
+                        <td><p class="force_info" id="m2_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td>Shear</td>
+                        <td><p class="force_info" id="s2"></p></td>
+                        <td><p class="force_info" id="s2_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td class="member_tag">
+                            <a href="javascript:void(0)" >Column</a>
+                        </td>
+                        <td>Axial</td>
+                        <td><p class="force_info" id="a2"></p></td>
+                        <td><p class="force_info" id="a2_s"></p></td>
+                    </tr>
+
+                    <tr class="inf">
+                        <td  colspan="4" class="floor_tag">
+                            <a href="javascript:void(0)" >Third Floor</a>
+                        </td>
+                    </tr>
+                    <tr class="inf">
+                        <td rowspan="2" class="member_tag">
+                            <a href="javascript:void(0)" >Beam</a>
+                        </td>
+                        <td>Moment</td>
+                        <td><p class="force_info" id="m3"></p></td>
+                        <td><p class="force_info" id="m3_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td>Shear</td>
+                        <td><p class="force_info" id="s3"></p></td>
+                        <td><p class="force_info" id="s3_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td class="member_tag">
+                            <a href="javascript:void(0)" >Column</a>
+                        </td>
+                        <td>Axial</td>
+                        <td><p class="force_info" id="a3"></p></td>
+                        <td><p class="force_info" id="a3_s"></p></td>
+                    </tr>
+
+                    <tr class="inf">
+                        <td colspan="4" class="floor_tag">
+                            <a href="javascript:void(0)" >Forth Floor</a>
+                        </td>
+                    </tr>
+                    <tr class="inf">
+                        <td rowspan="2" class="member_tag">
+                            <a href="javascript:void(0)" >Beam</a>
+                        </td>
+                        <td>Moment</td>
+                        <td><p class="force_info" id="m4"></p></td>
+                        <td><p class="force_info" id="m4_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td>Shear</td>
+                        <td><p class="force_info" id="s4"></p></td>
+                        <td><p class="force_info" id="s4_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td class="member_tag">
+                            <a href="javascript:void(0)" >Column</a>
+                        </td>
+                        <td>Axial</td>
+                        <td><p class="force_info" id="a4"></p></td>
+                        <td><p class="force_info" id="a4_s"></p></td>
+                    </tr>
+
+                    <tr class="inf">
+                        <td colspan="4" class="floor_tag">
+                            <a href="javascript:void(0)" >Fifth Floor</a>
+                        </td>
+                    </tr>
+                    <tr class="inf">
+                        <td rowspan="2" class="member_tag">
+                            <a href="javascript:void(0)" >Beam</a>
+                        </td>
+                        <td>Moment</td>
+                        <td><p class="force_info" id="m5"></p></td>
+                        <td><p class="force_info" id="m5_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td>Shear</td>
+                        <td><p class="force_info" id="s5"></p></td>
+                        <td><p class="force_info" id="s5_s"></p></td>
+                    </tr>
+                    <tr class="inf">
+                        <td class="member_tag">
+                            <a href="javascript:void(0)" >Column</a>
+                        </td>
+                        <td>Axial</td>
+                        <td><p class="force_info" id="a5"></p></td>
+                        <td><p class="force_info" id="a5_s"></p></td>
+                    </tr>
+                    <tr class="sg">
+                        <td colspan="4" id="advice_tag">
+                            <a href="javascript:void(0)">Suggestion</a>
+                        </td>
+                    </tr>
+                    <tr class="a1">
+                        <td colspan="4">
+                            <a href="javascript:void(0)">Beam Revise: Choose shorter beam with larger section area.</a>
+                        </td>
+                    </tr>
+                    <tr class="a2">
+                        <td colspan="4">
+                            <a href="javascript:void(0)">Beam Revise: Choose larger section area of beam and try again.</a>
+                        </td>
+                    </tr>
+                    <tr class="a3">
+                        <td colspan="4">
+                            <a href="javascript:void(0)">Column Revise: Increase section area of column and try again.</a>
+                         </td>
+                    </tr>
+                    <tr class="a4">
+                        <td colspan="4">
+                            <a href="javascript:void(0)">Size Revise: Keep the size of the beam and the column in balance.</a>
+                         </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <table class="entryTable">
+            <tr>
+                <td colspan="4" >STABILITY II</td>
+            </tr>
+            <tr>
+                <td>Number of Story:</td>
+                <td>
+                    <select id="level">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Story Height:</td><td colspan="3"><input id="level_height" type="int" name="storyHeight"></td>
+            </tr>
+            <tr class="hint_info">
+                <td></td><td colspan="3">Range of Height Value:[8,15]</td>
+            </tr>
+            <tr>
+                <td>Beam Length:</td><td colspan="3"><input id="beam_len" type="int" name="BeamLength" width="5px"></td>
+            </tr>
+            <tr class="hint_info">
+                <td></td><td colspan="3">Range of Length Value:[10,25]</td>
+            </tr>
+            <tr>
+                <td>Beam Section</td>
+            </tr>
+            <tr>
+                <td align="right">width:</td>
+                <td>
+                    <select id="beam_width">
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                    </select>
+                </td>
+                <td  align="right">height:</td>
+                <td>
+                    <select id="beam_height">
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                        <option value="45">45</option>
+                        <option value="50">50</option>
+                        <option value="55">55</option>
+                        <option value="60">60</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Column Section</td>
+            </tr>
+            <tr>
+                <td  align="right">width:</td>
+                <td>
+                    <select id="column_width">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                    </select>
+                </td>
+                <td  align="right">thickness:</td>
+                <td>
+                    <select id="column_thick">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <button class="game_btn" id="confirm_btn">CONFIRM</button>
+        <button class="game_btn" id="calculate_btn">CALCULATE</button>
+        <button class="game_btn" id="clear_btn">CLEAR</button>
+        <button class="game_btn" id="exit_btn">EXIT</button>
+    </div>
+
+</div>
+
+</body>
+
+</html>
